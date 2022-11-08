@@ -28,7 +28,7 @@ const ContactForm = () => {
 
         <div className="mb-3">
           <label className="form-label" htmlFor="email">
-            Email
+            EMAIL
           </label>
           <input className="form-control" type="email" id="email" required />
         </div>
@@ -54,7 +54,7 @@ const ContactForm = () => {
 
         <div className="mb-3">
           <label className="form-label" htmlFor="message">
-            Message
+            MESSAGE
           </label>
           <textarea className="form-control" id="message" required />
         </div>

@@ -9,6 +9,7 @@ import ContactForm from "./pages/ContactForm";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { useContext } from "react";
 import AuthContext from "./context/auth-context";
+import HistoryTable from "./pages/HistoryTable";
 
 function App() {
   const auth = useContext(AuthContext);
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Navbar isLoggedIn={false} />
         <Routes>
+        <Route path="/history" element={<HistoryTable />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -30,6 +32,7 @@ function App() {
       <BrowserRouter>
         <Navbar isLoggedIn={true} />
         <Routes>
+          <Route path="/history" element={<HistoryTable />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/contact-us" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
