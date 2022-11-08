@@ -12,7 +12,7 @@ const ItemForm = () => {
       rate: rate.value,
       mobileNum: mobile.value,
     }
-    console.log(conFom)
+    console.log(conFom);
   }
   return (
     <div className="container mt-5">

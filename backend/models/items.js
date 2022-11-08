@@ -37,6 +37,10 @@ const itemSchema = new mongoose.Schema({
   quantity: {
     type: Number,
     required: true
+  },
+  location: {
+    type: String,
+    required: true
   }
 
 });

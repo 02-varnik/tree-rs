@@ -3,7 +3,7 @@ const req = require("express/lib/request");
 const Item = require("../models/items");
 
 const addItem = async (req, res, next) => {
-  const { username,userId, email, phonenum, userType, itemType, rate, quantity } =
+  const { username,userId, email,location, phonenum, userType, itemType, rate, quantity } =
     req.body;
 
   const newItem = new Item({
@@ -15,6 +15,7 @@ const addItem = async (req, res, next) => {
     itemType,
     rate,
     quantity,
+    location
   });
 
   try {

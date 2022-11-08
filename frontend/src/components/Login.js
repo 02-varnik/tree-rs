@@ -44,7 +44,7 @@ export default function Login() {
         auth.login(responseData.user);
 
         console.log(responseData);
-        navigate("/");
+        navigate("/history");
 
       } else {
         console.log(responseData.error);
