@@ -7,16 +7,30 @@ import Navbar from "./components/NavBar";
 import HomePage from "./pages/Homepage";
 import ContactForm from "./pages/ContactForm";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { useContext } from "react";
+import AuthContext from "./context/auth-context";
 
 function App() {
-  return (
+  const auth = useContext(AuthContext);
+  return !auth.isLoggedIn ? (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar isLoggedin={false} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/contact-us" element={<ContactForm />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  ) : (
+    <>
+      <BrowserRouter>
+        <Navbar isLoggedin={true} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/contact-us" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

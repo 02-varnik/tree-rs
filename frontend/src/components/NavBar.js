@@ -1,9 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-function Navbar() {
+import AuthContext from "../context/auth-context";
+function Navbar(props) {
+
+  const auth = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const logoutButtonHandler = async ()=>{
+    auth.logout();
+  }
 
   return (
     <nav className="top-0 z-50 w-full shadow-sm bg-divcol shadow-purple-500/50">
@@ -64,7 +70,7 @@ function Navbar() {
             }`}
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              {isLoggedIn ? (
+              {props.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/profile">Profile</Link>
@@ -79,7 +85,7 @@ function Navbar() {
                     <Link
                       to="/"
                       onClick={() => {
-                        setIsLoggedIn(!isLoggedIn);
+                        logoutButtonHandler()
                       }}
                     >
                       LOGOUT
