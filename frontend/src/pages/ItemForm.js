@@ -1,19 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 const ItemForm = () => {
-  const [formStatus, setFormStatus] = React.useState('Send')
-  const onSubmit = (e) => {
-    e.preventDefault()
-    setFormStatus('Submitting...')
-    const { location, quantity, rate, mobile } = e.target.elements
+  const [formStatus, setFormStatus] = React.useState("Send");
+  const navigator = useNavigate();
+  const onSubmit =async (e) => {
+    e.preventDefault();
+    setFormStatus("Submitting...");
+    const { location, quantity, rate, mobile } = e.target.elements;
     let conFom = {
       location: location.value,
       quantity: quantity.value,
       rate: rate.value,
       mobileNum: mobile.value,
-    }
-    console.log(conFom)
-  }
+    };
+    console.log(conFom);
+    navigator("/");
+  };
   return (
     <div className="container mt-5">
       <h2 className="mb-3">PLEASE FILL OUT THE FOLLOWING DETAILS</h2>
@@ -28,7 +30,12 @@ const ItemForm = () => {
           <label className="form-label" htmlFor="quantity">
             QUANTITY(IN KGs)
           </label>
-          <input className="form-control" type="number" id="quantity" required />
+          <input
+            className="form-control"
+            type="number"
+            id="quantity"
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="rate">
@@ -43,11 +50,11 @@ const ItemForm = () => {
           <input className="form-control" type="text" id="mobile" required />
         </div>
         <button className="btn btn-danger" type="submit">
-          
-          <Link to="/thankyou" >{formStatus}</Link>
+          {formStatus}
         </button>
+        THANKS FOR REACHING OUT TO US WE WILL GET BACK TO YOU IN 24 HOURS
       </form>
     </div>
-  )
-}
+  );
+};
 export default ItemForm;

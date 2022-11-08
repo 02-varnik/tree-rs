@@ -31,7 +31,6 @@ function LandingFrameMessage() {
         recycling made convenient
       </div>
       <br />
-      <LandingPageButton />
     </div>
   );
 }
