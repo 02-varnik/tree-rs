@@ -9,6 +9,10 @@ const itemSchema = new mongoose.Schema({
     unique: true,
     maxlength: 25,
   },
+  userId:{
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: [true, "Please enter the email"],

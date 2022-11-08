@@ -3,11 +3,12 @@ const req = require("express/lib/request");
 const Item = require("../models/items");
 
 const addItem = async (req, res, next) => {
-  const { username, email, phonenum, userType, itemType, rate, quantity } =
+  const { username,userId, email, phonenum, userType, itemType, rate, quantity } =
     req.body;
 
   const newItem = new Item({
     username,
+    userId,
     email,
     phonenum,
     userType,
@@ -29,4 +30,28 @@ const addItem = async (req, res, next) => {
   }
 };
 
+const fetchItem = async  (req,res,next)=>{
+  const userId = req.params.uid;
+  console.log(userId);
+
+  let items;
+  try {
+    items = await Item.findAll({ userId: userId });
+    console.log(items);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ error: err.message });
+  }
+
+  if (!items) {
+    console.log("No item found with this id");
+    res.status(401).json({ error: "No item found with this id" });
+  }
+
+  console.log("item with this id found");
+  console.log(item);
+  res.status(201).json({ item: items });
+}
+
 exports.addItem = addItem;
+exports.fetchItem= fetchItem;
