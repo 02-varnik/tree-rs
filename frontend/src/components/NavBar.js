@@ -77,7 +77,7 @@ function Navbar(props) {
                     <Link to="/profile">Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/post/new">New Post</Link>
+                    <Link to="/form">New Post</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/contact-us">CONTACT US</Link>
