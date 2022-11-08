@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { signupFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
@@ -9,6 +9,7 @@ let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Signup() {
+  var category = "BUY";
   const [signupState, setSignupState] = useState(fieldsState);
 
   const handleChange = (e) =>
@@ -16,9 +17,13 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState);
+    console.log(signupState, category);
     createAccount();
   };
+
+  function parth(e) {
+    category = e.target.value;
+  }
 
   //handle Signup API Integration here
   const createAccount = () => {};
@@ -40,6 +45,53 @@ export default function Signup() {
             placeholder={field.placeholder}
           />
         ))}
+        <div>
+          DO YOU WANT TO BUY OR SELL PAPER?
+          <div className="relative inline-flex self-center">
+            <svg
+              className="text-white bg-purple-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              width="25px"
+              height="25px"
+              viewBox="0 0 38 22"
+              version="1.1"
+            >
+              <g
+                id="ZahnhelferDE—Design"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="ZahnhelferDE–Icon&amp;Asset-Download"
+                  transform="translate(-539.000000, -199.000000)"
+                  fill="#ffffff"
+                  fill-rule="nonzero"
+                >
+                  <g
+                    id="Icon-/-ArrowRight-Copy-2"
+                    transform="translate(538.000000, 183.521208)"
+                  >
+                    <polygon
+                      id="Path-Copy"
+                      transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) "
+                      points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"
+                    />
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <select
+              onChange={parth}
+              className="text-lg font-bold rounded border-2 border-purple-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+            >
+              <option>BUY</option>
+              <option>SELL</option>
+            </select>
+          </div>
+        </div>
         <FormAction handleSubmit={handleSubmit} text="Signup" />
       </div>
     </form>
