@@ -18,7 +18,13 @@ app.use(express.static("public"));
 //connecting to the databse server
 const mongoose = require("mongoose");
 const dbName = "tree-rs";
-mongoose.connect(`mongodb://localhost:27017/${dbName}`);
+mongoose
+  .connect(
+    `mongodb+srv://kitashi14:kitashi02@cluster0.rhccnpx.mongodb.net/${dbName}?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    console.log("Connected to database\n");
+  });
 
 //adding a middleware for setting headers in api requests for allowing its execution to from another server when using browsers
 app.use((req, res, next) => {
