@@ -7,7 +7,7 @@ const ItemForm = () => {
   const [formStatus, setFormStatus] = React.useState(userData.type);
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
     const { location, quantity, rate, mobile } = e.target.elements;
     let conFom = {
       location: location.value,
@@ -32,13 +32,16 @@ const ItemForm = () => {
           location: conFom.location,
         });
         setFormStatus("Submitting...");
-        const response = await fetch(`${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/addItem`, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: itemData,
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/addItem`,
+          { 
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: itemData,
+          }
+        );
 
         const responseData = await response.json();
 
@@ -83,7 +86,13 @@ const ItemForm = () => {
           <label className="form-label" htmlFor="rate">
             RATE(per kg) (INR)
           </label>
-          <input className="form-control" type="number" id="rate" required />
+          <input
+            className="form-control"
+            type="number"
+            step="any"
+            id="rate"
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="mobile">
