@@ -22,6 +22,7 @@ const addUser = async (req, res, next) => {
     console.log("A user with this email already exists");
     console.log(existingUserEmail);
     res.status(422).json({ error: "A user with this email already exists" });
+    return;
   }
 
   async function hashPassword() {
