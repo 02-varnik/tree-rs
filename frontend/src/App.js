@@ -11,6 +11,7 @@ import { useContext } from "react";
 import AuthContext from "./context/auth-context";
 import HistoryTable from "./pages/HistoryTable";
 import ItemForm from "./pages/ItemForm";
+import Thankyou from "./pages/Thankyou";
 
 function App() {
   const auth = useContext(AuthContext);
@@ -21,6 +22,7 @@ function App() {
         <Routes>
         <Route path="/history" element={<HistoryTable />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/thankyou" element={<Thankyou />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/contact-us" element={<ContactForm />} />
@@ -35,6 +37,7 @@ function App() {
         <Navbar isLoggedIn={true} />
         <Routes>
           <Route path="/history" element={<HistoryTable />} />
+          <Route path="/thankyou" element={<Thankyou />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/contact-us" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
