@@ -34,7 +34,7 @@ const ItemForm = () => {
         setFormStatus("Submitting...");
         const response = await fetch(
           `${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/addItem`,
-          { 
+          {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -89,7 +89,7 @@ const ItemForm = () => {
           <input
             className="form-control"
             type="number"
-            step="any"
+            step="0.01"
             id="rate"
             required
           />
