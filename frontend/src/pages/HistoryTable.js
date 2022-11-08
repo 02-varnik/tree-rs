@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ function HistoryTable() {
     },
   ];
 
-  let itemList=[];
+  const [itemList, setItemList] = useState([]);
   let sr = 0;
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function HistoryTable() {
         const responseData = await response.json();
 
         if (response.status === 200) {
-          itemList = responseData.items;
+          setItemList(responseData.items);
           console.log("got item-history list");
           console.log(itemList);
         } else if (response.status === 400) {
@@ -72,40 +72,18 @@ function HistoryTable() {
               <th>MOBILE NO.</th>
             </tr>
           </thead>
-          {/* {demoObj.map((val, key) => {
+          {itemList.map((item) => {
+            sr++;
             return (
-              <tr key={key}>
-                <th scope="col">{val.sno}</th>
-                <td>{val.location}</td>
-                <td>{val.quantity}</td>
-                <td>{val.rate}</td>
-                <td>{val.mobileNo}</td>
-              </tr>
-            );
-          })} */}
-          {/* {itemList.map((val, key) => {
-            return (
-              <tr key={key}>
-                <th scope="col">{val.sno}</th>
-                <td>{val.location}</td>
-                <td>{val.quantity}</td>
-                <td>{val.rate}</td>
-                <td>{val.mobileNo}</td>
-              </tr>
-            );
-          })} */}
-          {itemList.map((item )=>{
-            // sr++;
-            // console.log(item);
-            return(
-              <tr>
-                <th scope="col">{sr}</th>
-                <td>{item.location}</td>
-                <td>{item.quantity}</td>
-                <td>{item.rate}</td>
-                <td>{item.phonenum}</td>
-              </tr>
-              
+              <>
+                <tr>
+                  <th scope="col">{sr}</th>
+                  <td>{item.location}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.rate}</td>
+                  <td>{item.phonenum}</td>
+                </tr>
+              </>
             );
           })}
         </table>

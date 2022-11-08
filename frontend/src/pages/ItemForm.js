@@ -44,7 +44,7 @@ const ItemForm = () => {
 
         if (response.status === 200) {
           console.log(responseData.message);
-          navigate("/");
+          navigate("/thankyou");
         } else {
           console.log(responseData.error);
           setFormStatus(userData.type);
