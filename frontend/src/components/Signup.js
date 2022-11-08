@@ -52,7 +52,7 @@ export default function Signup() {
       if (response.status === 201) {
         auth.login(responseData.user);
         console.log(responseData);
-        navigate("/");
+        navigate("/history");
       } else {
         console.log(responseData.error);
         alert(responseData.error);
