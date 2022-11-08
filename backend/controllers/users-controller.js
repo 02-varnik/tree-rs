@@ -6,6 +6,7 @@ const User = require("../models/user");
 const addUser = async (req, res, next) => {
   //destructuring and storing requested data
   const { name, email, password, type } = req.body;
+  console.log(req.body);
 
   //finding existing user with same email;
   let existingUserEmail;
@@ -15,7 +16,6 @@ const addUser = async (req, res, next) => {
     console.log(err.message);
     res.status(500).json({ error: err.message });
   }
-  
 
   //checking existing userEmail
   if (existingUserEmail) {
@@ -23,7 +23,6 @@ const addUser = async (req, res, next) => {
     console.log(existingUserEmail);
     res.status(422).json({ error: "A user with this email already exists" });
   }
-
 
   async function hashPassword() {
     const saltRounds = 10;
@@ -45,27 +44,27 @@ const addUser = async (req, res, next) => {
     username: name,
     email,
     password: hashedPassword,
-    type: type
+    type: type,
   });
 
   //add newUser to database
   try {
     await newUser.save();
+    console.log("added user");
+    console.log(newUser);
+    //resending data with 'OK' status code
+    res.status(201).json({ user: newUser });
+    // res.status(201).json({user : newUser.toObject({ getters: true})})     // toObject() is method in moongoose
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
   }
-
-  console.log("User added");
-  console.log(newUser);
-  //resending data with 'OK' status code
-  res.status(201).json({ user: newUser });
-  // res.status(201).json({user : newUser.toObject({ getters: true})})     // toObject() is method in moongoose
 };
 
 //post login request function
 const verifyUser = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(req.body);
 
   let existingUser;
 
@@ -86,6 +85,7 @@ const verifyUser = async (req, res, next) => {
 
   async function checkHashPassword() {
     const isMatching = await new Promise((resolve, reject) => {
+      console.log(password,existingUser.password);
       bcrypt.compare(
         password,
         existingUser.password,
@@ -102,7 +102,7 @@ const verifyUser = async (req, res, next) => {
   const isPassMatching = await checkHashPassword();
   console.log(isPassMatching);
 
-  if (isPassMatching) {
+  if (!isPassMatching) {
     console.log("Invalid credentials, could not log you in.");
     res
       .status(401)
@@ -117,7 +117,6 @@ const verifyUser = async (req, res, next) => {
     user: existingUser,
   });
 };
-
 
 exports.signup = addUser;
 exports.login = verifyUser;

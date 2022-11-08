@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/auth-context";
 function Navbar(props) {
@@ -10,6 +10,7 @@ function Navbar(props) {
   const logoutButtonHandler = async ()=>{
     auth.logout();
   }
+
 
   return (
     <nav className="top-0 z-50 w-full shadow-sm bg-divcol shadow-purple-500/50">

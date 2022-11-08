@@ -15,7 +15,7 @@ function App() {
   return !auth.isLoggedIn ? (
     <>
       <BrowserRouter>
-        <Navbar isLoggedin={false} />
+        <Navbar isLoggedIn={false} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -28,7 +28,7 @@ function App() {
   ) : (
     <>
       <BrowserRouter>
-        <Navbar isLoggedin={true} />
+        <Navbar isLoggedIn={true} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact-us" element={<ContactForm />} />

@@ -18,17 +18,15 @@ const addItem = async (req, res, next) => {
 
   try {
     await newItem.save();
+    console.log("Item added");
+
+    console.log(newItem);
+
+    res.status(200).json({ message: "Added your item request" });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
   }
-
-  console.log("Item added");
-
-  console.log(newItem);
-
-  res.status(200).json({ message: "Added your item request" });
 };
-
 
 exports.addItem = addItem;

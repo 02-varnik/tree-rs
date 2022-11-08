@@ -1,14 +1,18 @@
-import { useRef, useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signupFields } from "../constants/formFields";
+import AuthContext from "../context/auth-context";
 import FormAction from "./FormAction";
 import Input from "./Input";
 
 const fields = signupFields;
-let fieldsState = {category: "BUY"};
+let fieldsState = { category: "BUY" };
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
   const [signupState, setSignupState] = useState(fieldsState);
 
   const handleChange = (e) =>
@@ -20,12 +24,43 @@ export default function Signup() {
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {
-    console.log(signupState,"here");
-    // if(signupState.confirm-password=== signu-pState.password) alert("Confirm-password doesn't matches");
-    console.log(signupState)
+  const createAccount = async () => {
+    console.log(signupState, "here");
 
+    if (signupState.confirmPassword !== signupState.password)
+      alert("Confirm-password doesn't matches");
 
+    try {
+      const userdata = JSON.stringify({
+        name: signupState.username,
+        email: signupState.emailAddress,
+        password: signupState.password,
+        type: signupState.category,
+      });
+
+      const response = await fetch("http://localhost:5000/api/user/signup", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: userdata,
+      });
+
+      const responseData = await response.json();
+
+      // Email Password Uploaded as New account => Login
+      if (response.status === 201) {
+        auth.login(responseData.user);
+        console.log(responseData);
+        navigate("/");
+      } else {
+        console.log(responseData.error);
+        alert(responseData.error);
+      }
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   };
 
   return (
