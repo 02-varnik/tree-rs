@@ -24,7 +24,7 @@ function HistoryTable() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/item/${userId}`
+          `${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/${userId}`
         );
 
         const responseData = await response.json();

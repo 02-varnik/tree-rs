@@ -38,7 +38,7 @@ export default function Signup() {
         type: signupState.category,
       });
 
-      const response = await fetch("http://localhost:5000/api/user/signup", {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_ROOT_URI}/api/user/signup`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

@@ -29,7 +29,7 @@ export default function Login() {
         password: loginState.password,
       });
 
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_ROOT_URI}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

@@ -32,7 +32,7 @@ const ItemForm = () => {
           location: conFom.location,
         });
         setFormStatus("Submitting...");
-        const response = await fetch("http://localhost:5000/api/item/addItem", {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/addItem`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
