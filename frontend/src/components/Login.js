@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginFields } from "../constants/formFields";
 import AuthContext from "../context/auth-context";
 import FormAction from "./FormAction";
@@ -10,6 +11,7 @@ let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const [loginState, setLoginState] = useState(fieldsState);
 
@@ -17,9 +19,41 @@ export default function Login() {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     console.log(loginState);
+
+    try {
+      const userdata = JSON.stringify({
+        email: loginState.emailAddress,
+        password: loginState.password,
+      });
+
+      const response = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: userdata,
+      });
+
+      const responseData = await response.json();
+
+      // Email Password Matches => Login
+      if (response.status === 201) {
+        auth.login(responseData.user);
+
+        console.log(responseData);
+        navigate("/");
+
+      } else {
+        console.log(responseData.error);
+        alert(responseData.error);
+      }
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   };
 
   return (

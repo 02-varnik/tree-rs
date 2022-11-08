@@ -17,7 +17,7 @@ function App() {
   return !auth.isLoggedIn ? (
     <>
       <BrowserRouter>
-        <Navbar isLoggedin={false} />
+        <Navbar isLoggedIn={false} />
         <Routes>
         <Route path="/history" element={<HistoryTable />} />
           <Route path="/" element={<HomePage />} />
@@ -32,7 +32,7 @@ function App() {
   ) : (
     <>
       <BrowserRouter>
-        <Navbar isLoggedin={true} />
+        <Navbar isLoggedIn={true} />
         <Routes>
           <Route path="/history" element={<HistoryTable />} />
           <Route path="/" element={<HomePage />} />
