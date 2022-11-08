@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function HistoryTable() {
   const demoObj =[{
@@ -10,6 +11,17 @@ function HistoryTable() {
       mobileNo:"+91959790656",
   },
 ] 
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+`;
+// Usage
   return (
     <><div class="col-md-0 col-md-offset-3 mb80 text-center probootstrap-animate">
       <table className="table table-bordered">
@@ -35,6 +47,11 @@ function HistoryTable() {
         })}
       </table>
       </div>
+      <Button>
+      <Link to ="/form">  
+        PLACE NEW ORDER
+        </Link>
+      </Button>
     </>
   );
 }
