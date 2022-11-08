@@ -1,0 +1,18 @@
+user-list{
+
+    username,
+    email,
+    password,
+    type,
+}
+
+item-list{
+    
+    username,
+    email,
+    user-type,
+    item-type,
+    phonenum,
+    rate,
+    quantity
+}

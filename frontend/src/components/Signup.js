@@ -16,12 +16,17 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState);
     createAccount();
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {};
+  const createAccount = () => {
+    console.log(signupState,"here");
+    // if(signupState.confirm-password=== signu-pState.password) alert("Confirm-password doesn't matches");
+    console.log(signupState)
+
+
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
