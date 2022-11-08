@@ -3,7 +3,7 @@ const req = require("express/lib/request");
 const Item = require("../models/items");
 
 const addItem = async (req, res, next) => {
-  const { username,userId, email,location, phonenum, userType, itemType, rate, quantity } =
+  const { username,userId, email,location, phonenum, itemType, rate, quantity } =
     req.body;
 
   const newItem = new Item({
@@ -11,7 +11,6 @@ const addItem = async (req, res, next) => {
     userId,
     email,
     phonenum,
-    userType,
     itemType,
     rate,
     quantity,
@@ -24,7 +23,7 @@ const addItem = async (req, res, next) => {
 
     console.log(newItem);
 
-    res.status(200).json({ message: "Added your item request" });
+    res.status(200).json({ message: "Added item" });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
@@ -37,7 +36,7 @@ const fetchItem = async  (req,res,next)=>{
 
   let items;
   try {
-    items = await Item.findAll({ userId: userId });
+    items = await Item.find({ userId: userId });
     console.log(items);
   } catch (err) {
     console.log(err.message);
@@ -46,12 +45,12 @@ const fetchItem = async  (req,res,next)=>{
 
   if (!items) {
     console.log("No item found with this id");
-    res.status(401).json({ error: "No item found with this id" });
+    res.status(400).json({ error: "No item found with this id" });
   }
 
   console.log("item with this id found");
-  console.log(item);
-  res.status(201).json({ item: items });
+  console.log(items);
+  res.status(200).json({ items: items });
 }
 
 exports.addItem = addItem;

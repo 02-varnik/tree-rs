@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/auth-context";
+
 function Navbar(props) {
+
+  const user = localStorage.getItem("user");
+  const userData = JSON.parse(user);
 
   const auth = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
@@ -74,10 +78,10 @@ function Navbar(props) {
               {props.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/history">History</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/form">New Post</Link>
+                    <Link to="/form">{userData.type}</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/contact-us">CONTACT US</Link>

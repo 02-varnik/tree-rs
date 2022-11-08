@@ -6,25 +6,19 @@ const itemSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Please enter username"],
-    unique: true,
     maxlength: 25,
   },
-  userId:{
+  userId: {
     type: String,
     required: true,
   },
   email: {
     type: String,
     required: [true, "Please enter the email"],
-    unique: true,
   },
   phonenum: {
     type: Number,
     required: true,
-  },
-  userType: {
-    type: String,
-    required: [true, "Please enter type of user"],
   },
   itemType: {
     type: String,
@@ -36,13 +30,12 @@ const itemSchema = new mongoose.Schema({
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
   },
   location: {
     type: String,
-    required: true
-  }
-
+    required: true,
+  },
 });
 
 //exporting item modal
