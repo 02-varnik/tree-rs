@@ -10,7 +10,6 @@ let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
-
   const auth = useContext(AuthContext);
   const [loginState, setLoginState] = useState(fieldsState);
 
@@ -20,9 +19,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-
+    console.log(loginState);
   };
 
   return (

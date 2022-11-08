@@ -4,12 +4,11 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 
 const fields = signupFields;
-let fieldsState = {};
+let fieldsState = {category: "BUY"};
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Signup() {
-  var category = "BUY";
   const [signupState, setSignupState] = useState(fieldsState);
 
   const handleChange = (e) =>
@@ -17,13 +16,9 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState, category);
+    console.log(signupState);
     createAccount();
   };
-
-  function parth(e) {
-    category = e.target.value;
-  }
 
   //handle Signup API Integration here
   const createAccount = () => {};
@@ -84,7 +79,8 @@ export default function Signup() {
               </g>
             </svg>
             <select
-              onChange={parth}
+              onChange={handleChange}
+              id="category"
               className="text-lg font-bold rounded border-2 border-purple-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
             >
               <option>BUY</option>
