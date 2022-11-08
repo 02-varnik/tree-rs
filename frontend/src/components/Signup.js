@@ -59,6 +59,7 @@ export default function Signup() {
       }
     } catch (err) {
       console.log(err);
+      alert("Can't fetch the user");
       return;
     }
   };

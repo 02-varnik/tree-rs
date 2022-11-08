@@ -53,6 +53,7 @@ const ItemForm = () => {
       } catch (err) {
         console.log(err);
         setFormStatus(userData.type);
+        alert("Can't able to submit form.");
         return;
       }
     }

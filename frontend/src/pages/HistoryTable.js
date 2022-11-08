@@ -42,6 +42,7 @@ function HistoryTable() {
         }
       } catch (err) {
         console.log(err);
+        alert("Can't able to show history");
         return;
       }
     };

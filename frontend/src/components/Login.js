@@ -52,6 +52,7 @@ export default function Login() {
       }
     } catch (err) {
       console.log(err);
+      alert("Can't fetch the user");
       return;
     }
   };
