@@ -12,7 +12,7 @@ function HistoryTable() {
 ] 
   return (
     <><div class="col-md-0 col-md-offset-3 mb80 text-center probootstrap-animate">
-      <table className="table">
+      <table className="table table-bordered">
         <thead  className="thead-dark">
         <tr>
           <th>SNO</th>
