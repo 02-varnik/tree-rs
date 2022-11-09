@@ -20,14 +20,14 @@ function App() {
       <BrowserRouter>
         <Navbar isLoggedIn={false} />
         <Routes>
-        <Route path="/history" element={<HistoryTable />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/history" element={<HistoryTable />} />
+          <Route path="/" element={<HomePage isLoggedin={false} />} />
           <Route path="/thankyou" element={<Thankyou />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/contact-us" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/form" element={<ItemForm/>}/>
+          <Route path="/form" element={<ItemForm />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -38,10 +38,10 @@ function App() {
         <Routes>
           <Route path="/history" element={<HistoryTable />} />
           <Route path="/thankyou" element={<Thankyou />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage isLoggedin={true} />} />
           <Route path="/contact-us" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/form" element={<ItemForm/>}/>
+          <Route path="/form" element={<ItemForm />} />
         </Routes>
       </BrowserRouter>
     </>

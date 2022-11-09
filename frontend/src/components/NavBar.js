@@ -11,7 +11,7 @@ function Navbar(props) {
   const [navbar, setNavbar] = useState(false);
   const [sidebar, setSidebar] = useState(false);
 
-  const logoutButtonHandler = async ()=>{
+  const logoutButtonHandler = async () => {
     auth.logout();
   }
 
@@ -70,24 +70,24 @@ function Navbar(props) {
         <div>
           {/* left side wala */}
           <div
-            className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
+            className={`flex-1 justify-self-center items-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+              }`}
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {props.isLoggedIn ? (
                 <>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/history">History</Link>
+                  <li >
+                    <Link className="font-bold text-green-900 hover:text-purple-600" to="/history">History</Link>
                   </li>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/form">{userData.type}</Link>
+                  <li>
+                    <Link className="font-bold text-green-900 hover:text-purple-600" to="/form">{userData.type}</Link>
                   </li>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/contact-us">CONTACT US</Link>
+                  <li>
+                    <Link className="font-bold text-green-900 hover:text-purple-600" to="/contact-us">CONTACT US</Link>
                   </li>
-                  <li className="text-gray-600 hover:text-purple-600">
+                  <li>
                     <Link
+                      className="font-bold text-green-900 hover:text-purple-600"
                       to="/"
                       onClick={() => {
                         logoutButtonHandler()
@@ -99,11 +99,11 @@ function Navbar(props) {
                 </>
               ) : (
                 <>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/login">LOGIN/SIGNUP</Link>
+                  <li>
+                    <Link className="font-bold text-green-900 hover:text-purple-600" to="/login">LOGIN/SIGNUP</Link>
                   </li>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/contact-us">CONTACT US</Link>
+                  <li>
+                    <Link className="font-bold text-green-900 hover:text-purple-600" to="/contact-us">CONTACT US</Link>
                   </li>
                 </>
               )}
@@ -112,9 +112,8 @@ function Navbar(props) {
 
           {/* right side wala */}
           <div
-            className={`flex-1 justify-self-center text-gray-500 pb-3 mt-8 md:hidden ${
-              sidebar ? "block" : "hidden"
-            }`}
+            className={`flex-1 justify-self-center text-green-900 font-bold  pb-3 mt-8 md:hidden ${sidebar ? "block" : "hidden"
+              }`}
           >
             Hello
           </div>
