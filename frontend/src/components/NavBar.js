@@ -100,7 +100,7 @@ function Navbar(props) {
               ) : (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/login">LOGIN</Link>
+                    <Link to="/login">LOGIN/SIGNUP</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/contact-us">CONTACT US</Link>
