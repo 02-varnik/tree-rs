@@ -24,7 +24,7 @@ function HistoryTable() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/item/${userId}`
+          `${process.env.REACT_APP_SERVER_ROOT_URI}/api/item/${userId}`
         );
 
         const responseData = await response.json();
@@ -42,6 +42,7 @@ function HistoryTable() {
         }
       } catch (err) {
         console.log(err);
+        alert("Can't able to show history");
         return;
       }
     };
@@ -61,14 +62,14 @@ function HistoryTable() {
   // Usage
   return (
     <>
-      <div class="col-md-0 col-md-offset-3 mb80 text-center probootstrap-animate">
+      <div class="mx-5 my-5 col-md-0 rounded-t-2xl overflow-scroll no-scrollbar border-t-2 border-l-1 border-r-1 col-md-offset-3 mb80 text-center probootstrap-animate">
         <table className="table table-bordered">
           <thead className="thead-dark">
             <tr>
               <th>SNO</th>
-              <th>LOCATION</th>
+              <th className="bg-slate-100 important">LOCATION</th>
               <th>QUANTITY(in kg)</th>
-              <th>RATE(in INR)</th>
+              <th className="bg-slate-100">RATE(in INR)</th>
               <th>MOBILE NO.</th>
             </tr>
           </thead>
@@ -78,19 +79,19 @@ function HistoryTable() {
               <>
                 <tr>
                   <th scope="col">{sr}</th>
-                  <td>{item.location}</td>
+                  <td className="bg-slate-100">{item.location}</td>
                   <td>{item.quantity}</td>
-                  <td>{item.rate}</td>
+                  <td className="bg-slate-100">{item.rate}</td>
                   <td>{item.phonenum}</td>
                 </tr>
               </>
             );
           })}
         </table>
+        <Link to="/form">
+          <Button>PLACE NEW ORDER</Button>
+        </Link>
       </div>
-      <Link to="/form">
-        <Button>PLACE NEW ORDER</Button>
-      </Link>
     </>
   );
 }

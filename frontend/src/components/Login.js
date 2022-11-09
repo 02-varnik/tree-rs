@@ -19,7 +19,7 @@ export default function Login() {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(loginState);
 
@@ -29,7 +29,7 @@ export default function Login() {
         password: loginState.password,
       });
 
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_ROOT_URI}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -52,6 +52,7 @@ export default function Login() {
       }
     } catch (err) {
       console.log(err);
+      alert("Can't fetch the user");
       return;
     }
   };

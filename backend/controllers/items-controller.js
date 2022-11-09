@@ -27,6 +27,7 @@ const addItem = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
+    return;
   }
 };
 
@@ -41,16 +42,19 @@ const fetchItem = async  (req,res,next)=>{
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
+    return;
   }
 
   if (!items) {
     console.log("No item found with this id");
     res.status(400).json({ error: "No item found with this id" });
+    return;
   }
 
   console.log("item with this id found");
   console.log(items);
   res.status(200).json({ items: items });
+  return;
 }
 
 exports.addItem = addItem;

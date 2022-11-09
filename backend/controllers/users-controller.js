@@ -1,5 +1,6 @@
 //extracting the user modal
 const bcrypt = require("bcryptjs");
+const { ReturnDocument } = require("mongodb");
 const User = require("../models/user");
 
 //post signin request function
@@ -15,6 +16,7 @@ const addUser = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
+    return;
   }
 
   //checking existing userEmail
@@ -59,6 +61,7 @@ const addUser = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: err.message });
+    return;
   }
 };
 
@@ -74,6 +77,7 @@ const verifyUser = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: "Loggin in failed, please try again later" });
+    return;
   }
 
   if (!existingUser) {
@@ -117,6 +121,7 @@ const verifyUser = async (req, res, next) => {
     message: "Logged in!",
     user: existingUser,
   });
+  return;
 };
 
 exports.signup = addUser;
